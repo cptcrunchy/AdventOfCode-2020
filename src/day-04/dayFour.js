@@ -1,4 +1,4 @@
-const { readFile } = require("./fileReader")
+import { readFile } from '../util/fileReader'
 
 const formatData = arr => arr.reduce((raw,pport) => (pport === "") ? raw.concat("|") : `${raw} ${pport}`, "").split("|").map(p => p.slice(1))
 const passportRegex = new RegExp("(hcl:)|(ecl:)|(eyr:)|(pid:)|(byr:)|(iyr:)|(hgt:)|(cid:{0,1})?", "g")
@@ -6,23 +6,20 @@ const pportFormat = str => str.split(":").join(" ").trim().split(" ")
 const pportsFilter = arr => arr.map(p => p.match(passportRegex).filter(m => m !== "").join("") )
 
 async function partOne(){
-    const data = await readFile("dayFour-input.txt")
+    const data = await readFile(4, "dayFour-sample.txt")//?
     const passportsRaw = formatData(data)
     const passports = pportsFilter(passportsRaw)
    
     return passports.filter(pport => {
         const pportProps = pportFormat(pport)
         if (pport.includes("cid")){
-            if (pportProps.length === 8){
-                return pport
-            } 
-        } else if(pportProps.length === 7){
-            return pport
-        } 
+            if (pportProps.length === 8) return pport            
+        } else if(pportProps.length === 7) return pport
+        
     }).length
 }
 
-partOne()
+partOne()//?
 
 const validFieldsRegex = /(ecl:\w+)|(pid:\d+)|(eyr:\d+)|(iyr:\d+)|(hcl:#\w+)|(byr:\d+)|(hgt:\d+\w+)/g
 const validateByr = str => {

@@ -12,11 +12,13 @@ const readLines = (file, onLine) => {
     return new Promise( resolve => reader.on('close', resolve))
 }
 
-const readFile = async file => {
+const readFile = async (day, file) => {
     const lines = []
-    await readLines(file, line => lines.push(line))
+    const fileLocation = `src/day-${(day <= 10)? "0"+day : day}/${file}`//?
+    await readLines(fileLocation, line => lines.push(line))//?
     return lines
 }
+
 
 module.exports = {
     readLines,
