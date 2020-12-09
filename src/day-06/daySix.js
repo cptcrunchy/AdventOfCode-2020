@@ -1,10 +1,10 @@
 import { readFile } from '../util/fileReader'
-import { sum, combineChars } from '../util/lib'
+import { sumArray, combineChars } from '../util/lib'
 
 async function partOne(){
     const data = await readFile(6, "daySix-input.txt")
     const answers = data.map(line => (line === "") ? "|": line).join("").split("|").map(form => [...new Set(form)].length )
-    return sum(answers)
+    return sumArray(answers)
 }
 
 partOne()//?
@@ -15,7 +15,7 @@ async function partTwo(){
     const everyonesAnswers = sets.map( item => {
         return (item.length === 1) ? item[0].length : getDuplicateChars(item.length, item)
     })
-    return sum(everyonesAnswers)
+    return sumArray(everyonesAnswers)
 }
 
 function getDuplicateChars(count, str){
