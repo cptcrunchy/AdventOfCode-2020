@@ -11,7 +11,7 @@ async function partOne(args){
     
     let preamble = 25;
     while(preamble < nums.length){
-        let lower = preamble - 25
+        let lower = preamble - preamble
         let upper = preamble
         if(!hasSumPair(nums.slice(lower, upper), nums[preamble])) break;
         preamble++;
