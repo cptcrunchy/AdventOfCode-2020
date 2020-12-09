@@ -21,9 +21,9 @@ async function partOne(args){
 
 function hasSumPair(numbers, p){
     let hasPair = false
-    for(let i = 0; i < numbers.length; i++){
-        for(let j = 0; j < numbers.length; j++){
-            if (i !== j && numbers[i] + numbers[j] === p) hasPair = true;
+    for(let i in numbers){
+        for(let j in numbers){
+            if(i !== j && numbers[i] + numbers[j] === p) hasPair = true;
         }
     }
     return hasPair
