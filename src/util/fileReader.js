@@ -14,7 +14,7 @@ const readLines = (file, onLine) => {
 
 const readFile = async (day, file) => {
     const lines = []
-    const fileLocation = `src/day-${(day <= 10)? "0"+day : day}/${file}`//?
+    const fileLocation = `src/day-${(day < 10)? "0"+day : day}/${file}`//?
     await readLines(fileLocation, line => lines.push(line))//?
     return lines
 }
