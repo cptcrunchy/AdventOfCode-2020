@@ -19,8 +19,14 @@ const readFile = async (day, file) => {
     return lines
 }
 
+const readFileRaw = async (day, file) => {
+    const fileLocation = `src/day-${(day < 10)? "0"+day : day}/${file}`
+    return fs.readFileSync(fileLocation, 'utf-8')//?
+}
+
 
 module.exports = {
     readLines,
-    readFile
+    readFile,
+    readFileRaw
 }
